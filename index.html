@@ -1,1 +1,198 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>freenish — Furnish for free</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body><div class="app"><header class="header"><button class="icon-btn">☰</button><div class="brand"><div class="wordmark">freenish<span>♥</span></div><div class="tagline">Furnish for free.</div></div><button class="icon-btn">♡</button></header><div class="location">⌖ Newport <button id="locationBtn">⌄</button></div><main><div class="search-row"><label class="search"><span>⌕</span><input id="searchInput" placeholder="Search furniture..."></label><button id="filterBtn" class="filter-btn">☷ <span>Filters</span></button></div><div class="categories" id="categories"><button class="category active" data-category="All"><span>All</span></button><button class="category" data-category="Sofas"><span>Sofas</span></button><button class="category" data-category="Chairs"><span>Chairs</span></button><button class="category" data-category="Beds"><span>Beds</span></button><button class="category" data-category="Storage"><span>Storage</span></button><button class="category" data-category="Tables"><span>Tables</span></button><button class="category" data-category="TV Units"><span>TV Units</span></button><button class="category" data-category="Lighting"><span>Lighting</span></button></div><section class="feed-head"><div><h1>Today's Finds <span>✦</span></h1><p>Hand-picked free furniture we've found today.</p></div><select id="sortSelect"><option value="new">New first</option><option value="distance">Nearest first</option></select></section><section id="feed" class="feed"></section><div id="loading" class="empty">Loading today's finds…</div><div id="empty" class="empty" hidden>No finds match those filters yet.</div></main><nav class="bottom-nav"><a class="selected" href="#">⌂<span>Home</span></a><a href="#">⌕<span>Search</span></a><a href="#">＋<span>Add find</span></a><a href="#">♡<span>Saved</span></a><a href="#">○<span>About</span></a></nav></div><dialog id="filterDialog"><div class="dialog-head"><h2>Filters</h2><button id="closeDialog" class="icon-btn">×</button></div><label>Style<select id="styleFilter"><option>All</option><option>Vintage</option><option>Mid-Century</option><option>Rustic</option><option>Modern</option><option>Country</option><option>Industrial</option></select></label><label>Material<select id="materialFilter"><option>All</option><option>Solid Oak</option><option>Teak</option><option>Pine</option><option>Wood</option><option>Metal</option></select></label><label>Maximum distance<select id="distanceFilter"><option value="5">5 miles</option><option value="3">3 miles</option><option value="2">2 miles</option></select></label><button id="applyFilters" class="primary">Show finds</button></dialog><script src="config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script></body></html>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>freenish — Furnish for free</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="app">
+
+    <header class="header">
+      <button class="icon-btn">☰</button>
+
+      <div class="brand">
+        <div class="wordmark">
+          freenish<span>♥</span>
+        </div>
+        <div class="tagline">Furnish for free.</div>
+      </div>
+
+      <button class="icon-btn">♡</button>
+    </header>
+
+    <div class="location">
+      ⌖ Newport
+      <button id="locationBtn">⌄</button>
+    </div>
+
+    <main>
+      <div class="search-row">
+        <label class="search">
+          <span>⌕</span>
+          <input
+            id="searchInput"
+            placeholder="Search furniture..."
+          >
+        </label>
+
+        <button id="filterBtn" class="filter-btn">
+          ☷
+          <span>Filters</span>
+        </button>
+      </div>
+
+      <div class="categories" id="categories">
+        <button class="category active" data-category="All">
+          <span>All</span>
+        </button>
+
+        <button class="category" data-category="Sofas">
+          <span>Sofas</span>
+        </button>
+
+        <button class="category" data-category="Chairs">
+          <span>Chairs</span>
+        </button>
+
+        <button class="category" data-category="Beds">
+          <span>Beds</span>
+        </button>
+
+        <button class="category" data-category="Storage">
+          <span>Storage</span>
+        </button>
+
+        <button class="category" data-category="Tables">
+          <span>Tables</span>
+        </button>
+
+        <button class="category" data-category="TV Units">
+          <span>TV Units</span>
+        </button>
+
+        <button class="category" data-category="Lighting">
+          <span>Lighting</span>
+        </button>
+      </div>
+
+      <section class="feed-head">
+        <div>
+          <h1>
+            Today's Finds <span>✦</span>
+          </h1>
+          <p>
+            Hand-picked free furniture we've found today.
+          </p>
+        </div>
+
+        <select id="sortSelect">
+          <option value="new">New first</option>
+          <option value="distance">Nearest first</option>
+        </select>
+      </section>
+
+      <section id="feed" class="feed"></section>
+
+      <div id="loading" class="empty">
+        Loading today's finds…
+      </div>
+
+      <div id="empty" class="empty" hidden>
+        No finds match those filters yet.
+      </div>
+    </main>
+
+    <nav class="bottom-nav">
+      <a class="selected" href="#">
+        ⌂
+        <span>Home</span>
+      </a>
+
+      <a href="#">
+        ⌕
+        <span>Search</span>
+      </a>
+
+      <a href="#">
+        ＋
+        <span>Add find</span>
+      </a>
+
+      <a href="#">
+        ♡
+        <span>Saved</span>
+      </a>
+
+      <a href="#">
+        ○
+        <span>About</span>
+      </a>
+    </nav>
+  </div>
+
+  <dialog id="filterDialog">
+    <div class="dialog-head">
+      <h2>Filters</h2>
+      <button id="closeDialog" class="icon-btn">
+        ×
+      </button>
+    </div>
+
+    <label>
+      Style
+      <select id="styleFilter">
+        <option>All</option>
+        <option>Vintage</option>
+        <option>Mid-Century</option>
+        <option>Rustic</option>
+        <option>Modern</option>
+        <option>Country</option>
+        <option>Industrial</option>
+      </select>
+    </label>
+
+    <label>
+      Material
+      <select id="materialFilter">
+        <option>All</option>
+        <option>Solid Oak</option>
+        <option>Teak</option>
+        <option>Pine</option>
+        <option>Wood</option>
+        <option>Metal</option>
+      </select>
+    </label>
+
+    <label>
+      Maximum distance
+      <select id="distanceFilter">
+        <option value="5">5 miles</option>
+        <option value="3">3 miles</option>
+        <option value="2">2 miles</option>
+      </select>
+    </label>
+
+    <button id="applyFilters" class="primary">
+      Show finds
+    </button>
+  </dialog>
+
+  <script src="config.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
