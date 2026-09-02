@@ -1,6 +1,6 @@
 *{box-sizing:border-box} :root{--green:#075b43;--yellow:#ffb51b;--cream:#fbfaf5;--ink:#17201d;--muted:#626a67;--line:#e9e9e3}
 body{margin:0;background:#ecece7;color:var(--ink);font-family:"Nunito Sans",Arial,sans-serif}
-.app{max-width:720px;min-height:100vh;margin:auto;background:var(--cream);box-shadow:0 0 30px #00000012}
+.app{max-width:1000px;min-height:100vh;margin:auto;background:var(--cream);box-shadow:0 0 30px #00000012}
 .header{display:grid;grid-template-columns:52px 1fr 52px;align-items:center;padding:20px 18px 5px}
 .icon-btn{border:0;background:transparent;font-size:27px;color:var(--green);cursor:pointer}
 .brand{text-align:center}.wordmark{font:700 58px/1 "Fredoka",sans-serif;letter-spacing:-4px;color:var(--green);position:relative;display:inline-block}.wordmark span{font-size:23px;color:var(--yellow);position:absolute;right:18px;top:-7px}
