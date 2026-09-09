@@ -42,7 +42,6 @@ $("listingForm").onsubmit = async e => {
         material: $("material").value,
         color: $("color").value,
         location: $("location").value,
-        distance: Number($("distance").value || 0),
         source: $("source").value,
         original_url: $("url").value.trim(),
         freenish_pick: $("pick").checked,
@@ -81,7 +80,6 @@ window.editFind = async id => {
     $("material").value = x.material || "Other";
     $("color").value = x.color || "Other";
     $("location").value = x.location || "Other";
-    $("distance").value = x.distance || 0;
     $("source").value = x.source || "Other";
     $("url").value = x.original_url || "";
     $("pick").checked = !!x.freenish_pick;
