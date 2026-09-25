@@ -1,7 +1,7 @@
 const cfg=window.FREENISH_CONFIG;
 const client=supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_PUBLISHABLE_KEY);
 let selectedCategory="All", listings=[];
-const state={style:"All",material:"All",distance:5};
+const state={style:"All",material:"All",color:"All",distance:5};
 const feed=document.querySelector("#feed"),empty=document.querySelector("#empty"),loading=document.querySelector("#loading");
 const searchInput=document.querySelector("#searchInput"),sortSelect=document.querySelector("#sortSelect");
 async function loadListings(){
@@ -30,7 +30,7 @@ function sourceLabel(source){
   }
 }
 function render(){
-let d=listings.filter(x=>(selectedCategory==="All"||x.category===selectedCategory)&&(state.style==="All"||x.style===state.style)&&(state.material==="All"||x.material===state.material)&&(!searchInput.value||(`${x.title} ${x.category} ${x.style} ${x.material} ${x.color}`).toLowerCase().includes(searchInput.value.toLowerCase())));
+let d=listings.filter(x=>(selectedCategory==="All"||x.category===selectedCategory)&&(state.style==="All"||x.style===state.style)&&(state.material==="All"||x.material===state.material)&&(state.color==="All"||x.color===state.color)&&(!searchInput.value||(`${x.title} ${x.category} ${x.style} ${x.material} ${x.color}`).toLowerCase().includes(searchInput.value.toLowerCase())));
 d.sort((a,b)=>new Date(b.added_at)-new Date(a.added_at));
  feed.innerHTML=d.map(x=>`<article class="card"><div class="card-top">${x.freenish_pick?'<span class="badge">★ FREENISH PICK</span>':'<span></span>'}<span class="added">Added ${ago(x.added_at)}</span></div><h2 class="title">${esc(x.title)}</h2><div class="meta">${esc([x.material,x.style,x.color].filter(Boolean).join(" · "))}</div><div class="meta">⌖ ${esc(x.category)} · ${esc(x.location||"Newport")} · </div><div class="free-row"><span class="free">FREE</span><a class="original" href="${esc(x.original_url||"#")}" target="_blank" rel="noopener">${sourceLabel(x.source)}</a></div></article>`).join("");
  empty.hidden=d.length>0;
@@ -40,5 +40,5 @@ searchInput.oninput=render;sortSelect.onchange=render;
 const dialog=document.querySelector("#filterDialog");
 document.querySelector("#filterBtn").onclick=()=>dialog.showModal();
 document.querySelector("#closeDialog").onclick=()=>dialog.close();
-document.querySelector("#applyFilters").onclick=()=>{state.style=document.querySelector("#styleFilter").value;state.material=document.querySelector("#materialFilter").value;state.distance=Number(document.querySelector("#distanceFilter").value);dialog.close();render();};
+document.querySelector("#applyFilters").onclick=()=>{state.style=document.querySelector("#styleFilter").value;state.material=document.querySelector("#materialFilter").value;state.color=document.querySelector("#colorFilter").value;state.distance=Number(document.querySelector("#distanceFilter").value);dialog.close();render();};
 loadListings();
